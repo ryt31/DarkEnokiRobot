@@ -9,6 +9,9 @@ public class Atowonigosu : MonoBehaviour
     public float Radius;
     public float Power;
     public float EPS = 0.01f;
+    public float NigosaretaRadius = 1f;
+    public float MissingRadius = 100f;
+    public bool CanNigosu;
     private int reminderObject;
     private List<(GameObject,Vector2)> Nigosareta;
     public bool IsNigosuable(GameObject target, float power)
@@ -23,19 +26,31 @@ public class Atowonigosu : MonoBehaviour
         {
             yield return new WaitForSeconds(0.1f);
             if (Vector2.Distance(target.transform.position, lastFramePosition) < EPS) break;
+            if (Vector2.Distance(target.transform.position, initialPosition) > MissingRadius) break;
             lastFramePosition = target.transform.position;
         }
         --reminderObject;
-        Vector2 futtobi = (Vector2)target.transform.position - initialPosition;
-        if (futtobi.magnitude > EPS)
+        Vector2 futtobi = lastFramePosition - initialPosition;
+        if (futtobi.magnitude > NigosaretaRadius)
         {
             Nigosareta.Add((target,futtobi));
         }
         yield return null;
     }
 
+    private float scoringNigosu(List<(GameObject, Vector2)> Nigosareta)
+    {
+        float res = 0;
+        foreach (var (obj, v) in Nigosareta)
+        {
+            res += obj.GetComponent<Rigidbody2D>().mass * v.sqrMagnitude;
+        }
+        return res;
+    }
+
     public IEnumerator Nigosu(float power, float radius)
     {
+        CanNigosu = false;
         yield return null;
         Collider2D[] objects = Physics2D.OverlapCircleAll(this.transform.position, radius);
 
@@ -58,26 +73,32 @@ public class Atowonigosu : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             Debug.Log(reminderObject);
         } while (reminderObject > 0);
-
-        Debug.Log(Nigosareta.Count);
-        foreach (var (i, j) in Nigosareta)
-        {
-            Debug.Log(i.name + j.ToString());
-        }
+        float score = scoringNigosu(Nigosareta);
+        Debug.Log("You're score: " + score.ToString());
         Nigosareta.Clear();
+        CanNigosu = true;
     }
     public IEnumerator NigosuRepeated(float span)
     {
         while (true)
         {
             yield return new WaitForSeconds(span);
-            StartCoroutine(Nigosu(Power, Radius));
-            break;
+            if (CanNigosu)
+            {
+                StartCoroutine(Nigosu(Power, Radius));
+            }
         }
     }
+
+    public void TestNigosu(){
+        StartCoroutine(NigosuRepeated(1f));
+    }
+
     void Start()
     {
         Nigosareta = new List<(GameObject, Vector2)>();
-        StartCoroutine(NigosuRepeated(1f));
+        CanNigosu = true;
+
+        TestNigosu();
     }
 }
