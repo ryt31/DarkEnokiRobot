@@ -31,9 +31,12 @@ public class FryingEffect : MonoBehaviour
         });
         var toriPosScreen = RectTransformUtility.WorldToScreenPoint(Camera.main, toriTransform.position);
         var toriPos = new Vector2(toriPosScreen.x / Screen.width, toriPosScreen.y / Screen.height);
-
+        CameraPlay.Zoom(toriPos.x, toriPos.y, 3f,3);
         DOVirtual.DelayedCall(1.5f, () => {
-            CameraPlay.MangaFlash(toriPos.x, toriPos.y, 2f, 60, Color.white);
+            CameraPlay.MangaFlash(toriPos.x, toriPos.y, 2.5f, 60, Color.white);
+            DOVirtual.DelayedCall(1.5f, () => {
+                toriTransform.gameObject.GetComponent<Animator>().Play("Tomitatu");
+            });
         });
     }
 }
