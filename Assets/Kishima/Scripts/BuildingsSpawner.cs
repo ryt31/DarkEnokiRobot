@@ -6,11 +6,16 @@ public class BuildingsSpawner : MonoBehaviour
     [SerializeField]
     private List<GameObject> buildings;
     [SerializeField]
+    private GameObject floor;
+    private Vector2 floorPos = new Vector2(0.0f, -3.0f);
+    [SerializeField]
     private Transform playerTransform;
     private float spawnTime = 0.0f;
 
     private void Start()
     {
+        // 床の生成
+        FloorInstatiate();
     }
 
     private void Update()
@@ -33,6 +38,21 @@ public class BuildingsSpawner : MonoBehaviour
             }
 
             spawnTime = 0.0f;
+        }
+
+        if (Mathf.Abs(playerTransform.position.x - floorPos.x) < 8.5f)
+        {
+            floorPos.x += 17.5f;
+            FloorInstatiate();
+        }
+    }
+
+    private void FloorInstatiate()
+    {
+        var f = Instantiate(floor, floorPos, Quaternion.identity);
+        if (f.TryGetComponent<Floor>(out Floor fl))
+        {
+            fl.PlayerTransform = playerTransform;
         }
     }
 }

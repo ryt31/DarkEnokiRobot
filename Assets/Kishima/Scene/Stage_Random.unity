@@ -541,6 +541,7 @@ MonoBehaviour:
   buildings:
   - {fileID: 6247277582516149249, guid: a583ec82d435bb74ebbef3ddd0914ecf, type: 3}
   - {fileID: 8324107998212569060, guid: af02a1100a975a440b46d3ec1803a02a, type: 3}
+  floor: {fileID: 7525398405920170183, guid: ddcf1077cc0625d4fa261d04314e8d85, type: 3}
   playerTransform: {fileID: 1219575899}
 --- !u!1 &1973431274
 GameObject:
