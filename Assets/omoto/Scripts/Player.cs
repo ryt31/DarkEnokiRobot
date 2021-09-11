@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -31,4 +32,20 @@ public class Player : MonoBehaviour
             nigoseru = value;
         }
     }
+
+    public void ReloadScene()
+    {
+        SceneManager.sceneLoaded += GameSceneLoaded;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    void GameSceneLoaded(Scene next,LoadSceneMode mode){
+        var player = GameObject.FindObjectOfType<Player>();
+        if(player!=null){
+            player.PlayerSize = PlayerSize;
+            player.Nigoseru = Nigoseru;
+        }
+        SceneManager.sceneLoaded -= GameSceneLoaded;
+    }
 }
+

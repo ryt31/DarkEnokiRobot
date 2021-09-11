@@ -8,12 +8,19 @@ public class PlayerMove : MonoBehaviour
     public IReadOnlyReactiveProperty<bool> OnPressedEnter => onPressedEnter;
     private Transform landingPoint;
     private Rigidbody2D rb;
+    private PlayerPhase phase;
     [SerializeField]
     private Atowonigosu atowonigosu;
+
+    [SerializeField]
+    private float Speed = 500.0f;
+    [SerializeField]
+    private float playerSpeed = 5.0f;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        phase = GetComponent<PlayerPhase>();
 
         foreach (Transform l in transform)
         {
@@ -28,16 +35,16 @@ public class PlayerMove : MonoBehaviour
             .Subscribe(_ =>
             {
                 GetComponentInChildren<Camera>().transform.parent = null;
-                Landing(500.0f);
+                Landing(Speed);
             }).AddTo(this);
 
         this.OnCollisionEnter2DAsObservable()
             .Where(col => col.gameObject.tag == "Floor")
             .Subscribe(col =>
             {
+                phase.ChangeBirdPhaseType(BirdPhaseType.Landing);
                 rb.constraints = RigidbodyConstraints2D.FreezePosition;
-                atowonigosu.NigosuRoutine();
-            }).AddTo(gameObject);
+            }).AddTo(this);
     }
 
     private void Update()
@@ -49,7 +56,7 @@ public class PlayerMove : MonoBehaviour
 
         if (!onPressedEnter.Value)
         {
-            transform.position += new Vector3(0.01f, 0.0f, 0.0f);
+            transform.position += new Vector3(playerSpeed, 0.0f, 0.0f) * Time.deltaTime;
         }
     }
 

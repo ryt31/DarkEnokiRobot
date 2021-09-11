@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7794974804149272292}
   - component: {fileID: 8288220373136836656}
   - component: {fileID: 4491127281441239431}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: trump_tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7028558483571493448}
   - component: {fileID: 2473352637790990927}
   - component: {fileID: 1284481822856935697}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: skytree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
