@@ -12,12 +12,28 @@ public class BuildingsSpawner : MonoBehaviour
     private Transform playerTransform;
     [SerializeField]
     private PlayerMove playerMove;
+    [SerializeField]
+    private Player player;
+    [SerializeField]
+    private float buildingsScale = 0.6f;
     private float spawnTime = 0.0f;
 
     private void Start()
     {
         // 床の生成
         FloorInstatiate();
+    }
+
+    private Vector3 calcBuildingsScale(GameObject Building)
+    {
+        // Playerの現在の大きさから、Buildingの大きさを計算します。
+        Tobaseru tobaseru = Building.GetComponent<Tobaseru>();
+        if (tobaseru == null)
+        {
+            return new Vector3(1f, 1f, 1f);
+        }
+        float k = tobaseru.ObjectSize / player.PlayerSize;
+        return new Vector3(k, k, k) * buildingsScale; // 適当な係数
     }
 
     private void Update()
@@ -39,6 +55,8 @@ public class BuildingsSpawner : MonoBehaviour
                 b.PlayerTransform = playerTransform;
                 b.OnPressedEnter = playerMove.OnPressedEnter;
             }
+
+            building.transform.localScale = calcBuildingsScale(building);
 
             spawnTime = 0.0f;
         }
