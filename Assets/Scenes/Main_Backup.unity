@@ -906,9 +906,11 @@ GameObject:
   - component: {fileID: 1219575901}
   - component: {fileID: 1219575904}
   - component: {fileID: 1219575903}
+  - component: {fileID: 1219575905}
+  - component: {fileID: 1219575906}
   - component: {fileID: 1219575900}
   - component: {fileID: 1219575902}
-  - component: {fileID: 1219575905}
+  - component: {fileID: 1219575907}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -1023,6 +1025,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atowonigosu: {fileID: 1728180647}
   Speed: 500
+  playerSpeed: 5
 --- !u!50 &1219575902
 Rigidbody2D:
   serializedVersion: 4
@@ -1056,6 +1059,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aab6093ef1182d743b1ee0a18dd8b9fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atowonigosu: {fileID: 1728180647}
 --- !u!114 &1219575904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1082,6 +1086,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSize: 1
   nigoseru: 5
+--- !u!114 &1219575906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219575897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f3b892c0f6c5634ab13186be12f92ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fryingEffect: {fileID: 1611864246}
+--- !u!95 &1219575907
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219575897}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a8d2263452356e74c925c35f8cadaf7a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1228693122
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,6 +1528,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417443863}
   m_CullTransparentMesh: 1
+--- !u!114 &1611864246 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 160361204525804497, guid: 821c6de13a2beb147b3f2f720b3bbf80, type: 3}
+  m_PrefabInstance: {fileID: 160361203542198780}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5733cbfae784abe4884299c483023071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1667566915
 GameObject:
   m_ObjectHideFlags: 0

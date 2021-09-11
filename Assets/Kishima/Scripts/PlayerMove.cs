@@ -45,15 +45,6 @@ public class PlayerMove : MonoBehaviour
                 phase.ChangeBirdPhaseType(BirdPhaseType.Landing);
                 rb.constraints = RigidbodyConstraints2D.FreezePosition;
             }).AddTo(this);
-
-        phase.CurrentBirdPhaseType
-            .Subscribe(ph =>
-            {
-                if (ph == BirdPhaseType.Jump)
-                {
-                    atowonigosu.NigosuRoutine();
-                }
-            });
     }
 
     private void Update()
