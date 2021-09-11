@@ -10,6 +10,8 @@ public class BuildingsSpawner : MonoBehaviour
     private Vector2 floorPos = new Vector2(0.0f, -3.0f);
     [SerializeField]
     private Transform playerTransform;
+    [SerializeField]
+    private PlayerMove playerMove;
     private float spawnTime = 0.0f;
 
     private void Start()
@@ -22,7 +24,7 @@ public class BuildingsSpawner : MonoBehaviour
     {
         spawnTime += Time.deltaTime;
 
-        if (spawnTime > 0.5f)
+        if (spawnTime > 0.5f && !playerMove.OnPressedEnter.Value)
         {
             var i = UnityEngine.Random.Range(0, buildings.Count);
             var pos = new Vector2(
@@ -35,12 +37,13 @@ public class BuildingsSpawner : MonoBehaviour
             if (b != null)
             {
                 b.PlayerTransform = playerTransform;
+                b.OnPressedEnter = playerMove.OnPressedEnter;
             }
 
             spawnTime = 0.0f;
         }
 
-        if (Mathf.Abs(playerTransform.position.x - floorPos.x) < 8.5f)
+        if (Mathf.Abs(playerTransform.position.x - floorPos.x) < 8.5f && !playerMove.OnPressedEnter.Value)
         {
             floorPos.x += 17.5f;
             FloorInstatiate();
@@ -53,6 +56,7 @@ public class BuildingsSpawner : MonoBehaviour
         if (f.TryGetComponent<Floor>(out Floor fl))
         {
             fl.PlayerTransform = playerTransform;
+            fl.OnPressedEnter = playerMove.OnPressedEnter;
         }
     }
 }
