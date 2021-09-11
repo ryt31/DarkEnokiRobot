@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4026015527119715509}
   - component: {fileID: 721163136208073097}
   - component: {fileID: 7198162384082174608}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "Sagrada Fam\xEDlia"
   m_TagString: Untagged
   m_Icon: {fileID: 0}

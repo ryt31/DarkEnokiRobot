@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4799129558480578096}
   - component: {fileID: 8489593413108864599}
   - component: {fileID: 3907648291418918907}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: biru
   m_TagString: Untagged
   m_Icon: {fileID: 0}

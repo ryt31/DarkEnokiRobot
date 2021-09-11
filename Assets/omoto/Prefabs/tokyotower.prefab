@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 322736847625660667}
   - component: {fileID: 3064694750294605451}
   - component: {fileID: 18501470200116734}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tokyotower
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3201245435397255838}
   - component: {fileID: 139408005502692520}
   - component: {fileID: 7071435033243661098}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: kinkakuji
   m_TagString: Untagged
   m_Icon: {fileID: 0}
