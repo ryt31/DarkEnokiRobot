@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 public class BuildingsSpawner : MonoBehaviour
 {
@@ -36,18 +38,40 @@ public class BuildingsSpawner : MonoBehaviour
         return new Vector3(k, k, k) * buildingsScale; // 適当な係数
     }
 
+    private GameObject SelectBuilding()
+    {
+        // Playerより小さいオブジェクトからランダムに生成するものを選択します。
+        List<GameObject> candidates = new List<GameObject>();
+        foreach (GameObject obj in buildings)
+        {
+            Tobaseru tabaseru = obj.GetComponent<Tobaseru>();
+            if(tabaseru == null)continue;
+            if(tabaseru.ObjectSize < player.PlayerSize){
+                candidates.Add(obj);
+            }
+        }
+        System.Func<GameObject,float> objectSize = x => x.GetComponent<Tobaseru>().ObjectSize;
+       candidates.Sort((x,y) => -objectSize(x).CompareTo(objectSize(y)));
+       if(candidates.Count > 3){
+           candidates = candidates.Take(3).ToList();
+       }
+       if(candidates.Count==0){
+           return buildings[0];
+       }
+       return candidates[Random.Range(0,candidates.Count)];
+    }
+
     private void Update()
     {
         spawnTime += Time.deltaTime;
 
         if (spawnTime > 0.5f && !playerMove.OnPressedEnter.Value)
         {
-            var i = UnityEngine.Random.Range(0, buildings.Count);
             var pos = new Vector2(
                 Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 1)).x + 1.0f,
                 -1.0f);
 
-            var building = Instantiate(buildings[i], pos, Quaternion.identity);
+            var building = Instantiate(SelectBuilding(), pos, Quaternion.identity);
 
             var b = building.GetComponent<Building>();
             if (b != null)
