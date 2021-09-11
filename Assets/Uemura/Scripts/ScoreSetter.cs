@@ -23,7 +23,7 @@ public class ScoreSetter : MonoBehaviour
             SetSizeText(birdSize+5);
         }
 
-        birdSizeText.text = birdSize.ToString("N2");
+        birdSizeText.text = birdSize.ToString("N1");
     }
 
     public void SetSizeText(float size,float duration=2f)
