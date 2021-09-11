@@ -7,14 +7,13 @@ public class FryingEffect : MonoBehaviour
 {
     [SerializeField] private GameObject cutinEffect;
     [SerializeField] private GameObject senEffect;
-    [SerializeField] private GameObject windEffect;
 
     [SerializeField] private Transform toriTransform;
     [SerializeField] private Canvas mainCanvas;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -43,11 +42,6 @@ public class FryingEffect : MonoBehaviour
 
             DOVirtual.DelayedCall(1.5f, () => {
                 toriTransform.gameObject.GetComponent<Animator>().Play("Tomitatu");
-
-                DOVirtual.DelayedCall(0.25f, () => {
-                    var windEff = GameObject.Instantiate(windEffect) as GameObject;
-                    windEffect.transform.position = toriNowPosition;
-                });
             });
         });
     }
