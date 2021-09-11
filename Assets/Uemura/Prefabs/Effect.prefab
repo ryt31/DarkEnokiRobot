@@ -370,7 +370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &160361203266335849
 Transform:
   m_ObjectHideFlags: 0
@@ -663,8 +663,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5733cbfae784abe4884299c483023071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutinAnimation: {fileID: 160361203266335855}
-  senEffect: {fileID: 0}
+  cutinEffect: {fileID: 160361203266335855}
+  senEffect: {fileID: 8066583615443943777, guid: 5f2e67228e1444043a99d2064b9fccde, type: 3}
+  windEffect: {fileID: 7505813344707263307, guid: e4847c3132cf2ea4da7de59f792a958d, type: 3}
   toriTransform: {fileID: 0}
   mainCanvas: {fileID: 0}
 --- !u!1 &160361204539643817

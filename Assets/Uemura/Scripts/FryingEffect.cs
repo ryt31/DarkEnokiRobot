@@ -5,8 +5,10 @@ using DG.Tweening;
 
 public class FryingEffect : MonoBehaviour
 {
-    [SerializeField] private GameObject cutinAnimation;
+    [SerializeField] private GameObject cutinEffect;
     [SerializeField] private GameObject senEffect;
+    [SerializeField] private GameObject windEffect;
+
     [SerializeField] private Transform toriTransform;
     [SerializeField] private Canvas mainCanvas;
     // Start is called before the first frame update
@@ -26,19 +28,26 @@ public class FryingEffect : MonoBehaviour
 
     public void EffectStart()
     {
-        cutinAnimation.SetActive(true);
+        cutinEffect.SetActive(true);
         DOVirtual.DelayedCall(2f, () => {
-            cutinAnimation.SetActive(false);
+            cutinEffect.SetActive(false);
         });
         var toriPosScreen = RectTransformUtility.WorldToScreenPoint(Camera.main, toriTransform.position);
         var toriPos = new Vector2(toriPosScreen.x / Screen.width, toriPosScreen.y / Screen.height);
+        Vector3 toriNowPosition = toriTransform.position;
         CameraPlay.Zoom(toriPos.x, toriPos.y, 3f,3);
         DOVirtual.DelayedCall(1.5f, () => {
-            var effect = GameObject.Instantiate(senEffect) as GameObject;
-            effect.transform.parent = toriTransform;
-            effect.transform.position = toriTransform.position;
+            var senEff = GameObject.Instantiate(senEffect) as GameObject;
+            senEff.transform.parent = toriTransform;
+            senEff.transform.position = toriTransform.position;
+
             DOVirtual.DelayedCall(1.5f, () => {
                 toriTransform.gameObject.GetComponent<Animator>().Play("Tomitatu");
+
+                DOVirtual.DelayedCall(0.25f, () => {
+                    var windEff = GameObject.Instantiate(windEffect) as GameObject;
+                    windEffect.transform.position = toriNowPosition;
+                });
             });
         });
     }
