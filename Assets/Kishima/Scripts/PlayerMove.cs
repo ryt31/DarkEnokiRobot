@@ -14,6 +14,8 @@ public class PlayerMove : MonoBehaviour
 
     [SerializeField]
     private float Speed = 500.0f;
+    [SerializeField]
+    private float playerSpeed = 5.0f;
 
     private void Start()
     {
@@ -63,7 +65,7 @@ public class PlayerMove : MonoBehaviour
 
         if (!onPressedEnter.Value)
         {
-            transform.position += new Vector3(0.01f, 0.0f, 0.0f);
+            transform.position += new Vector3(playerSpeed, 0.0f, 0.0f) * Time.deltaTime;
         }
     }
 
