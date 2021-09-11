@@ -24,6 +24,8 @@ public class Atowonigosu : MonoBehaviour
     // List<(オブジェクトの参照, 吹き飛ばした相対ベクトル)>
     private List<(GameObject, Vector2)> Nigosareta;
 
+    private Coroutine routine = null;
+
     public bool IsNigosuable(GameObject target, float power)
     {
         // Nigosu関数で吹き飛ばすかどうかの判定をする関数
@@ -104,19 +106,20 @@ public class Atowonigosu : MonoBehaviour
                 StartCoroutine(Nigosu(Power, Radius));
             }
         }
+        routine = null;
     }
 
-    public void TestNigosu()
+    public void NigosuRoutine()
     {
-        // テスト用関数
-        StartCoroutine(NigosuRepeated(1f));
+        if(routine == null)
+        {
+            routine = StartCoroutine(Nigosu(Power, Radius));
+        }
     }
 
     void Start()
     {
         Nigosareta = new List<(GameObject, Vector2)>();
         CanNigosu = true;
-
-        TestNigosu();
     }
 }
