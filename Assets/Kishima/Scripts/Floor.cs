@@ -1,11 +1,11 @@
 using UnityEngine;
 using UniRx;
 
-public class Building : MonoBehaviour
+public class Floor : MonoBehaviour
 {
     public Transform PlayerTransform { get; set; }
     public IReadOnlyReactiveProperty<bool> OnPressedEnter { get; set; }
-    private float Mergin = 3.0f;
+    private float Mergin = 15.0f;
 
     private void Update()
     {
