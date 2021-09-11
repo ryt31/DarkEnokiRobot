@@ -1,5 +1,6 @@
 using UnityEngine;
 using UniRx;
+using UniRx.Triggers;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class PlayerMove : MonoBehaviour
     public IReadOnlyReactiveProperty<bool> OnPressedEnter => onPressedEnter;
     private Transform landingPoint;
     private Rigidbody2D rb;
+    [SerializeField]
+    private Atowonigosu atowonigosu;
 
     private void Start()
     {
@@ -27,6 +30,14 @@ public class PlayerMove : MonoBehaviour
                 GetComponentInChildren<Camera>().transform.parent = null;
                 Landing(500.0f);
             }).AddTo(this);
+
+        this.OnCollisionEnter2DAsObservable()
+            .Where(col => col.gameObject.tag == "Floor")
+            .Subscribe(col =>
+            {
+                rb.constraints = RigidbodyConstraints2D.FreezePosition;
+                atowonigosu.NigosuRoutine();
+            }).AddTo(gameObject);
     }
 
     private void Update()
