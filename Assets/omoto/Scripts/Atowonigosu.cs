@@ -6,20 +6,34 @@ public class Atowonigosu : MonoBehaviour
 {
 
 
-    public float Radius;
-    public float Power;
-    public float EPS = 0.01f;
-    public float NigosaretaRadius = 1f;
-    public float MissingRadius = 100f;
-    public bool CanNigosu;
-    private int reminderObject;
-    private List<(GameObject,Vector2)> Nigosareta;
+    [SerializeField]
+    private float Radius; // Nigosuをテストするときの半径
+    [SerializeField]
+    private float Power; // Nigosuをテストするときの爆発の強さ
+    [SerializeField]
+    private readonly float EPS = 0.01f; // オブジェクトが吹き飛んでいるかを判定するための定数
+    [SerializeField]
+    private float NigosaretaRadius = 1f; // オブジェクトが濁されるために必要な飛翔距離
+    [SerializeField]
+    private float MissingRadius = 100f; // MissingRadius以上の距離を飛んだオブジェクトの追跡をやめる。
+
+    public bool CanNigosu; // Nigosu関数を実行してもよいか
+    private int reminderObject; // Nigosu関数で吹き取んでいるオブジェクトの個数
+
+    // 吹き飛ばしたオブジェクトの結果を持ったList
+    // List<(オブジェクトの参照, 吹き飛ばした相対ベクトル)>
+    private List<(GameObject, Vector2)> Nigosareta;
+
     public bool IsNigosuable(GameObject target, float power)
     {
+        // Nigosu関数で吹き飛ばすかどうかの判定をする関数
         return Mathf.Pow(target.GetComponent<Rigidbody2D>().mass, 2f) < power;
     }
 
-    private IEnumerator TrackObject(GameObject target){
+    private IEnumerator TrackObject(GameObject target)
+    {
+        // 吹き飛ばしたオブジェクトが停止するまで監視する関数
+        ++reminderObject;
         Vector2 initialPosition = target.transform.position;
         Vector2 lastFramePosition = initialPosition;
         while (true)
@@ -33,23 +47,25 @@ public class Atowonigosu : MonoBehaviour
         Vector2 futtobi = lastFramePosition - initialPosition;
         if (futtobi.magnitude > NigosaretaRadius)
         {
-            Nigosareta.Add((target,futtobi));
+            Nigosareta.Add((target, futtobi));
         }
         yield return null;
     }
 
     private float scoringNigosu(List<(GameObject, Vector2)> Nigosareta)
     {
+        // 吹き飛ばしたオブジェクトの結果を受け取り、適当なスコアをつける関数
         float res = 0;
         foreach (var (obj, v) in Nigosareta)
         {
-            res += obj.GetComponent<Rigidbody2D>().mass * v.sqrMagnitude;
+            res += obj.GetComponent<Rigidbody2D>().mass * Mathf.Log(v.magnitude);
         }
         return res;
     }
 
     public IEnumerator Nigosu(float power, float radius)
     {
+        // オブジェクトを吹き飛ばす関数。
         CanNigosu = false;
         yield return null;
         Collider2D[] objects = Physics2D.OverlapCircleAll(this.transform.position, radius);
@@ -66,7 +82,6 @@ public class Atowonigosu : MonoBehaviour
             Vector2 add = v.normalized * power * 1 / v.sqrMagnitude;
             rigid.AddForce(add);
             StartCoroutine(TrackObject(i.gameObject));
-            ++reminderObject;
         }
         do
         {
@@ -80,6 +95,7 @@ public class Atowonigosu : MonoBehaviour
     }
     public IEnumerator NigosuRepeated(float span)
     {
+        // テスト用の定期的にNigosu関数を呼び出す関数
         while (true)
         {
             yield return new WaitForSeconds(span);
@@ -90,7 +106,9 @@ public class Atowonigosu : MonoBehaviour
         }
     }
 
-    public void TestNigosu(){
+    public void TestNigosu()
+    {
+        // テスト用関数
         StartCoroutine(NigosuRepeated(1f));
     }
 
