@@ -109,6 +109,8 @@ public class Atowonigosu : MonoBehaviour
         Debug.Log("You're score: " + score.ToString());
         Nigosareta.Clear();
         CanNigosu = true;
+        yield return new WaitForSeconds(1f);
+        player.ReloadScene();
     }
     public IEnumerator NigosuRepeated(float span)
     {
