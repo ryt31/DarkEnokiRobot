@@ -116,6 +116,7 @@ public class Atowonigosu : MonoBehaviour
                 if (tobaseru != null && player != null)
                 {
                     k = Mathf.Pow(player.PlayerSize, 3f) / Mathf.Pow(tobaseru.ObjectSize, 3f);
+                    tobaseru.Nigosu();
                 }
             }
             Vector2 add = v.normalized * power * 1 / v.sqrMagnitude * k;
