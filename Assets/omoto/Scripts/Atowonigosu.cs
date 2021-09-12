@@ -5,7 +5,8 @@ using UnityEngine;
 public class Atowonigosu : MonoBehaviour
 {
 
-
+    [SerializeField]
+    private GameObject resultAnimator;
     [SerializeField]
     private float Radius; // Nigosuをテストするときの半径
     [SerializeField]
@@ -21,9 +22,9 @@ public class Atowonigosu : MonoBehaviour
     [SerializeField]
     private Player player; // Player Componentへの参照
 
-    [SerializeField] 
+    [SerializeField]
     private float maxExplosionPower = 1000f;
-    [SerializeField] 
+    [SerializeField]
     private float exlplosionDirRandom = 0.1f;
 
     public bool CanNigosu; // Nigosu関数を実行してもよいか
@@ -41,10 +42,12 @@ public class Atowonigosu : MonoBehaviour
         return Mathf.Pow(target.GetComponent<Rigidbody2D>().mass, 2f) < power;
     }
 
-    private void addPlayerSize(float add){
+    private void addPlayerSize(float add)
+    {
         player.PlayerSize += add;
     }
-    private void decreaseNigoseru(){
+    private void decreaseNigoseru()
+    {
         --player.Nigoseru;
     }
 
@@ -77,7 +80,8 @@ public class Atowonigosu : MonoBehaviour
         foreach (var (obj, v) in Nigosareta)
         {
             Tobaseru tobaseru = obj.GetComponent<Tobaseru>();
-            if(tobaseru != null){
+            if (tobaseru != null)
+            {
                 res += Mathf.Sqrt(tobaseru.ObjectSize) * Mathf.Log(v.magnitude);
                 continue;
             }
@@ -131,8 +135,7 @@ public class Atowonigosu : MonoBehaviour
         Debug.Log("You're score: " + score.ToString());
         Nigosareta.Clear();
         CanNigosu = true;
-        yield return new WaitForSeconds(1f);
-        player.LoadScene();
+        resultAnimator.SetActive(true); // リザルトアニメーション
     }
     public IEnumerator NigosuRepeated(float span)
     {
@@ -145,12 +148,11 @@ public class Atowonigosu : MonoBehaviour
                 StartCoroutine(Nigosu(Power, Radius));
             }
         }
-        routine = null;
     }
 
     public void NigosuRoutine()
     {
-        if(routine == null)
+        if (routine == null)
         {
             routine = StartCoroutine(Nigosu(Power, Radius));
         }
@@ -160,19 +162,24 @@ public class Atowonigosu : MonoBehaviour
     {
         Nigosareta = new List<(GameObject, Vector2)>();
         CanNigosu = true;
-        if(explosionCenter == null){
+        if (explosionCenter == null)
+        {
             explosionCenter = this.transform;
         }
-        if(player == null){
+        if (player == null)
+        {
             player = this.GetComponent<Player>();
-            if(player == null){
+            if (player == null)
+            {
                 Debug.Log("Start:ERROR there are no Player Component");
             }
         }
     }
 
-    private Vector2 capVector2(Vector2 v,float max){
-        if(v.magnitude < max){
+    private Vector2 capVector2(Vector2 v, float max)
+    {
+        if (v.magnitude < max)
+        {
             return v;
         }
         return v.normalized * max;

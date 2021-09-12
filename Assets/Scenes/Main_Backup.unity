@@ -123,6 +123,79 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &16248 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5058943004754706199, guid: 323a5bb62c0028b45b3cb9026618b196, type: 3}
+  m_PrefabInstance: {fileID: 5058943006368734366}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &16250 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5058943004754706197, guid: 323a5bb62c0028b45b3cb9026618b196, type: 3}
+  m_PrefabInstance: {fileID: 5058943006368734366}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &16252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 16250}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &16253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04e3c10a6d108644dbada5544ea1def3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1219575905}
 --- !u!1 &17271162
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,7 +1220,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 814753117}
   m_FillRect: {fileID: 240124996}
   m_HandleRect: {fileID: 814753116}
@@ -1428,6 +1501,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628963149}
   m_CullTransparentMesh: 1
+--- !u!1 &795614810 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7248480372764709036, guid: 323a5bb62c0028b45b3cb9026618b196, type: 3}
+  m_PrefabInstance: {fileID: 5058943006368734366}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &814753115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,7 +2040,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 0473e56b32c3a414b8232a310ac6ea7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3496,12 +3574,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 138576896c761094f89e6693618f581f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resultAnimator: {fileID: 795614810}
   Radius: 100
   Power: 30000
   NigosaretaRadius: 1
   MissingRadius: 100
   explosionCenter: {fileID: 0}
   player: {fileID: 1219575905}
+  maxExplosionPower: 1000
+  exlplosionDirRandom: 0.1
   CanNigosu: 0
 --- !u!1 &1736449513
 GameObject:
