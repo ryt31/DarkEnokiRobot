@@ -13,7 +13,7 @@ public class PlayerMove : MonoBehaviour
     private Atowonigosu atowonigosu;
 
     [SerializeField]
-    private float Speed = 500.0f;
+    private float Speed = 200.0f;
     [SerializeField]
     private float playerSpeed = 5.0f;
     [SerializeField]
