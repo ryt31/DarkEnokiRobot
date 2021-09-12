@@ -47,6 +47,7 @@ public class PlayerJump : MonoBehaviour
                 isJump = true;
             }
             jumpValue.Value = Mathf.PingPong(sum, 1.0f);
+            jumpValue.Value = 1f - Mathf.Pow(Mathf.Abs(Mathf.Cos(Time.time * 2f)), 1 / 2f);
             sum += 2.0f * Time.deltaTime;
             yield return null;
         }
