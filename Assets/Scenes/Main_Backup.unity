@@ -2091,7 +2091,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sizeText: {fileID: 628963151}
-  nigoseruText: {fileID: 1417443865}
   playerSize: 0.11
   nigoseru: 3
 --- !u!114 &1219575906
@@ -2841,6 +2840,7 @@ GameObject:
   - component: {fileID: 1417443864}
   - component: {fileID: 1417443866}
   - component: {fileID: 1417443865}
+  - component: {fileID: 1417443867}
   m_Layer: 5
   m_Name: nigosiText
   m_TagString: Untagged
@@ -2909,6 +2909,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417443863}
   m_CullTransparentMesh: 1
+--- !u!114 &1417443867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417443863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034c268e523991145b32d7ba25a9dc32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1219575905}
 --- !u!1 &1420136802
 GameObject:
   m_ObjectHideFlags: 0
@@ -3962,6 +3975,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!1 &2126025337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7854941121953685696, guid: 493ebabfcd981674496368148898dfd3, type: 3}
+  m_PrefabInstance: {fileID: 7854941120892340975}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2126025341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126025337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034c268e523991145b32d7ba25a9dc32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1219575905}
 --- !u!1001 &160361203542198780
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4046,6 +4077,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7248480372764709039, guid: 323a5bb62c0028b45b3cb9026618b196, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248480372764709039, guid: 323a5bb62c0028b45b3cb9026618b196, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 7248480372764709039, guid: 323a5bb62c0028b45b3cb9026618b196, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 7248480372764709041, guid: 323a5bb62c0028b45b3cb9026618b196, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4100,15 +4143,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7248480372764709041, guid: 323a5bb62c0028b45b3cb9026618b196, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7248480372764709041, guid: 323a5bb62c0028b45b3cb9026618b196, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7248480372764709041, guid: 323a5bb62c0028b45b3cb9026618b196, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7248480372764709041, guid: 323a5bb62c0028b45b3cb9026618b196, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -4139,13 +4182,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7854941122769403648, guid: 493ebabfcd981674496368148898dfd3, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854941122769403648, guid: 493ebabfcd981674496368148898dfd3, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 7854941122769403648, guid: 493ebabfcd981674496368148898dfd3, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 7854941122769403651, guid: 493ebabfcd981674496368148898dfd3, type: 3}
       propertyPath: m_Name
       value: NokoriNigosiNotice
       objectReference: {fileID: 0}
     - target: {fileID: 7854941122769403651, guid: 493ebabfcd981674496368148898dfd3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7854941122769403678, guid: 493ebabfcd981674496368148898dfd3, type: 3}
       propertyPath: m_Pivot.x
@@ -4201,15 +4256,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7854941122769403678, guid: 493ebabfcd981674496368148898dfd3, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7854941122769403678, guid: 493ebabfcd981674496368148898dfd3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7854941122769403678, guid: 493ebabfcd981674496368148898dfd3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7854941122769403678, guid: 493ebabfcd981674496368148898dfd3, type: 3}
       propertyPath: m_AnchoredPosition.x
