@@ -68,6 +68,13 @@ public class Player : MonoBehaviour
 
     void ResultSceneLoaded(Scene next, LoadSceneMode mode)
     {
+
+        var player = GameObject.FindObjectOfType<Player>();
+        if (player != null)
+        {
+            player.PlayerSize = PlayerSize;
+            player.Nigoseru = Nigoseru;
+        }
         SceneManager.sceneLoaded -= ResultSceneLoaded;
     }
 }
