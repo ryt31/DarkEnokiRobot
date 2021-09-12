@@ -1084,7 +1084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ed582b60dbfad94da5ff8573fe6a5dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSize: 1
+  playerSize: 0.11
   nigoseru: 5
 --- !u!114 &1219575906
 MonoBehaviour:
@@ -1444,6 +1444,18 @@ MonoBehaviour:
   buildings:
   - {fileID: 1534850486400354883, guid: 729ec1f6021fb6d49b18e2959ba30fa3, type: 3}
   - {fileID: 8746849354923010112, guid: 89dd1a368c507a644ad9af47f7e0b273, type: 3}
+  - {fileID: 1453911486334299774, guid: bf8c45a66e24f6a42990ffe8bc3428a0, type: 3}
+  - {fileID: 3301169072798190111, guid: 994839ef6dfb44646b6a0e1b7891b42b, type: 3}
+  - {fileID: 6693981200538449913, guid: 0b91058bf8ce68145b3ee194304066fd, type: 3}
+  - {fileID: 4794909753170231473, guid: a0d2a75a9c20dc343b9694e5e6e32043, type: 3}
+  - {fileID: 2906716880066737367, guid: 502dede3cf7718e468fdda9f1d8c4ad4, type: 3}
+  - {fileID: 3972270372177917386, guid: 696733c8713302347928ab04a22e4d97, type: 3}
+  - {fileID: 3312960614396099972, guid: 9f914a616e056cb408a2a5d475a58f92, type: 3}
+  - {fileID: 7797525100753183694, guid: 08629dcda24b797409b7335153916f41, type: 3}
+  - {fileID: 8645653840630859642, guid: 8a985a5e7c2d9994e8a286c739b34625, type: 3}
+  - {fileID: 8530718378742958897, guid: c65c5ecb360c5664790e200d890fcdcf, type: 3}
+  - {fileID: 4756918348408594574, guid: fc2d194eeed7e2649a7ebe8714029354, type: 3}
+  - {fileID: 1106314628517672138, guid: 913621e917395984a83a8813dee20b2e, type: 3}
   floor: {fileID: 7525398405920170183, guid: ddcf1077cc0625d4fa261d04314e8d85, type: 3}
   playerTransform: {fileID: 1219575899}
   playerMove: {fileID: 1219575901}
