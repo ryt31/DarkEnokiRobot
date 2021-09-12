@@ -3384,6 +3384,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ResultAnimator
       objectReference: {fileID: 0}
+    - target: {fileID: 7248480372764709036, guid: 323a5bb62c0028b45b3cb9026618b196, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7248480372764709041, guid: 323a5bb62c0028b45b3cb9026618b196, type: 3}
       propertyPath: m_Pivot.x
       value: 0
