@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
 {
 
     public Text sizeText;
-    public Text nigoseruText;
 
     [SerializeField]
     private float playerSize = 1f;
@@ -39,10 +38,6 @@ public class Player : MonoBehaviour
         set
         {
             nigoseru = value;
-            if (nigoseruText != null)
-            {
-                nigoseruText.text = value.ToString();
-            }
         }
     }
 
