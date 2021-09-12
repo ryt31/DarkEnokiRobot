@@ -14,9 +14,6 @@ public class ResultAnimationSupport : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Test
-        SetDefaultSize(1.5f);
-        SetGrowUpSize(15);
     }
 
     // Update is called once per frame

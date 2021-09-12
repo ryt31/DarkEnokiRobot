@@ -131,11 +131,15 @@ public class Atowonigosu : MonoBehaviour
             Debug.Log(reminderObject);
         } while (reminderObject > 0);
         float score = scoringNigosu(Nigosareta);
+        float beforeSize = player.PlayerSize;
         addPlayerSize(score);
+        float afterSize = player.PlayerSize;
         Debug.Log("You're score: " + score.ToString());
         Nigosareta.Clear();
         CanNigosu = true;
         resultAnimator.SetActive(true); // リザルトアニメーション
+        resultAnimator.GetComponent<ResultAnimationSupport>().SetDefaultSize(beforeSize);
+        resultAnimator.GetComponent<ResultAnimationSupport>().SetGrowUpSize(afterSize);
     }
     public IEnumerator NigosuRepeated(float span)
     {
