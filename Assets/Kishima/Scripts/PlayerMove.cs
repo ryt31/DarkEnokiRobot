@@ -16,6 +16,8 @@ public class PlayerMove : MonoBehaviour
     private float Speed = 500.0f;
     [SerializeField]
     private float playerSpeed = 5.0f;
+    [SerializeField]
+    private GameObject backGround;
 
     private void Start()
     {
@@ -35,6 +37,7 @@ public class PlayerMove : MonoBehaviour
             .Subscribe(_ =>
             {
                 GetComponentInChildren<Camera>().transform.parent = null;
+                backGround.transform.parent = null;
                 Landing(Speed);
             }).AddTo(this);
 
