@@ -2271,7 +2271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atowonigosu: {fileID: 1728180647}
-  Speed: 500
+  Speed: 200
   playerSpeed: 5
   backGround: {fileID: 1055529125}
 --- !u!50 &1219575902
