@@ -2090,10 +2090,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ed582b60dbfad94da5ff8573fe6a5dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeText: {fileID: 0}
-  nigoseruText: {fileID: 0}
+  sizeText: {fileID: 628963151}
+  nigoseruText: {fileID: 1417443865}
   playerSize: 0.11
-  nigoseru: 5
+  nigoseru: 3
 --- !u!114 &1219575906
 MonoBehaviour:
   m_ObjectHideFlags: 0
