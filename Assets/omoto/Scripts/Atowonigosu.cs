@@ -71,6 +71,11 @@ public class Atowonigosu : MonoBehaviour
         float res = 0;
         foreach (var (obj, v) in Nigosareta)
         {
+            Tobaseru tobaseru = obj.GetComponent<Tobaseru>();
+            if(tobaseru != null){
+                res += Mathf.Sqrt(tobaseru.ObjectSize) * Mathf.Log(v.magnitude);
+                continue;
+            }
             res += obj.GetComponent<Rigidbody2D>().mass * Mathf.Log(v.magnitude);
         }
         return res;
