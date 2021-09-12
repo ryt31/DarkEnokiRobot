@@ -18,6 +18,8 @@ public class PlayerMove : MonoBehaviour
     private float playerSpeed = 5.0f;
     [SerializeField]
     private GameObject backGround;
+    [SerializeField]
+    private GameObject tyakutiSE;
 
     private void Start()
     {
@@ -47,6 +49,7 @@ public class PlayerMove : MonoBehaviour
             {
                 phase.ChangeBirdPhaseType(BirdPhaseType.Landing);
                 rb.constraints = RigidbodyConstraints2D.FreezePosition;
+                tyakutiSE.SetActive(true);
             }).AddTo(this);
     }
 
