@@ -150,11 +150,11 @@ public class Atowonigosu : MonoBehaviour
         }
     }
 
-    public void NigosuRoutine()
+    public void NigosuRoutine(float value)
     {
         if (routine == null)
         {
-            routine = StartCoroutine(Nigosu(Power, Radius));
+            routine = StartCoroutine(Nigosu(Power * value, Radius));
         }
     }
 
