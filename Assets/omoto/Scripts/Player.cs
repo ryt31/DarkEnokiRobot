@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+
+    public Text sizeText;
+    public Text nigoseruText;
+
     [SerializeField]
     private float playerSize = 1f;
     public float PlayerSize
@@ -16,6 +21,10 @@ public class Player : MonoBehaviour
         set
         {
             playerSize = value;
+            if (sizeText != null)
+            {
+                sizeText.text = value.ToString("F1");
+            }
         }
     }
 
@@ -30,6 +39,10 @@ public class Player : MonoBehaviour
         set
         {
             nigoseru = value;
+            if (nigoseruText != null)
+            {
+                nigoseruText.text = value.ToString();
+            }
         }
     }
 
