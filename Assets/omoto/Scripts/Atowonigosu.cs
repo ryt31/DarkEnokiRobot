@@ -21,6 +21,11 @@ public class Atowonigosu : MonoBehaviour
     [SerializeField]
     private Player player; // Player Componentへの参照
 
+    [SerializeField] 
+    private float maxExplosionPower = 1000f;
+    [SerializeField] 
+    private float exlplosionDirRandom = 0.1f;
+
     public bool CanNigosu; // Nigosu関数を実行してもよいか
     private int reminderObject; // Nigosu関数で吹き取んでいるオブジェクトの個数
 
@@ -110,7 +115,10 @@ public class Atowonigosu : MonoBehaviour
                 }
             }
             Vector2 add = v.normalized * power * 1 / v.sqrMagnitude * k;
+            add = capVector2(add, maxExplosionPower);
+            add = randomizeVectorDirection(add, exlplosionDirRandom);
             rigid.AddForce(add);
+            rigid.AddTorque(Random.Range(-add.magnitude, add.magnitude));
             StartCoroutine(TrackObject(i.gameObject));
         }
         do
@@ -161,5 +169,24 @@ public class Atowonigosu : MonoBehaviour
                 Debug.Log("Start:ERROR there are no Player Component");
             }
         }
+    }
+
+    private Vector2 capVector2(Vector2 v,float max){
+        if(v.magnitude < max){
+            return v;
+        }
+        return v.normalized * max;
+    }
+
+    private Vector2 randomizeVectorDirection(Vector2 v, float rad)
+    {
+        // Vector2をrad以下の角度でランダムに向きを変えます
+        float x1 = v.x;
+        float y1 = v.y;
+        float rot = Random.Range(-rad, rad);
+        float x2 = Mathf.Cos(rot);
+        float y2 = Mathf.Sin(rot);
+
+        return new Vector2(x1 * x2 - y1 * y2, x1 * y2 + y1 * x2);
     }
 }
