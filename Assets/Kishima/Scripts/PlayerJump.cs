@@ -42,7 +42,7 @@ public class PlayerJump : MonoBehaviour
         float sum = 0;
         while (!isJump)
         {
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetMouseButtonDown(0))
             {
                 isJump = true;
             }

@@ -52,7 +52,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetMouseButtonDown(0))
         {
             onPressedEnter.Value = true;
         }
