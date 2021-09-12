@@ -3069,7 +3069,7 @@ MonoBehaviour:
   - {fileID: 1106314628517672138, guid: 913621e917395984a83a8813dee20b2e, type: 3}
   - {fileID: 9071259828799492382, guid: e1bb659fdd3c4ed4883e7f1a3fbd7561, type: 3}
   - {fileID: 9088338352947620368, guid: 25bda43e608ae024ba5a0e481c788e80, type: 3}
-  - {fileID: 5394443819541327636, guid: 59aab0ac4065f0e418ed21e47af431a0, type: 3}
+  - {fileID: 247947892157862272, guid: 59aab0ac4065f0e418ed21e47af431a0, type: 3}
   floor: {fileID: 7525398405920170183, guid: ddcf1077cc0625d4fa261d04314e8d85, type: 3}
   playerTransform: {fileID: 1219575899}
   playerMove: {fileID: 1219575901}
