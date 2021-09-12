@@ -1,14 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class LoadingSceneWithUI : MonoBehaviour
 {
-    private AsyncOperation async;
-    public GameObject LoadingUi;
-    public Slider Slider;
+    [SerializeField] private string nextSceneName;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,20 +18,8 @@ public class LoadingSceneWithUI : MonoBehaviour
         
     }
 
-    public void LoadNextScene(string sceneName)
+    public void LoadNextScene()
     {
-        LoadingUi.SetActive(true);
-        StartCoroutine(LoadScene(sceneName));
-    }
-
-    IEnumerator LoadScene(string sceneName)
-    {
-        async = SceneManager.LoadSceneAsync(sceneName);
-
-        while (!async.isDone)
-        {
-            Slider.value = async.progress;
-            yield return null;
-        }
+        SceneManager.LoadScene(nextSceneName);
     }
 }
