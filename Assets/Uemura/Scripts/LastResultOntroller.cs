@@ -12,6 +12,8 @@ public class LastResultOntroller : MonoBehaviour
     [SerializeField] private Text rankText;
     [SerializeField] private Animator animator;
     [SerializeField] private Button titleButton;
+    [SerializeField] private GameObject drumSE;
+    [SerializeField] private GameObject janSE;
     private float size;
     private float nowSize=1.5f;
     private int sizeRate = 1;
@@ -77,8 +79,10 @@ public class LastResultOntroller : MonoBehaviour
 
     private void StartEffect()
     {
+        drumSE.SetActive(true);
         DOTween.To(() => nowSize, (x) => nowSize = x, size, 10f).SetEase(Ease.InCirc).OnComplete(()=> {
-
+            drumSE.SetActive(false);
+            janSE.SetActive(true);
             titleButton.gameObject.SetActive(true);
         });
 
