@@ -33,7 +33,7 @@ public class PlayerJump : MonoBehaviour
             .Where(isFinish => isFinish)
             .Subscribe(_ =>
             {
-                atowonigosu.NigosuRoutine();
+                atowonigosu.NigosuRoutine(jumpValue.Value);
             }).AddTo(this);
     }
 

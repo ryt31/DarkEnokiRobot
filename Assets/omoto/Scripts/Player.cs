@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
 {
 
     public Text sizeText;
-    public Text nigoseruText;
 
     [SerializeField]
     private float playerSize = 1f;
@@ -39,26 +38,37 @@ public class Player : MonoBehaviour
         set
         {
             nigoseru = value;
-            if (nigoseruText != null)
-            {
-                nigoseruText.text = value.ToString();
-            }
         }
     }
 
-    public void ReloadScene()
+    public void LoadScene()
     {
-        SceneManager.sceneLoaded += GameSceneLoaded;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (nigoseru <= 0)
+        {
+            SceneManager.sceneLoaded += ResultSceneLoaded;
+            SceneManager.LoadScene("Result", LoadSceneMode.Additive);
+        }
+        else
+        {
+            SceneManager.sceneLoaded += GameSceneLoaded;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 
-    void GameSceneLoaded(Scene next,LoadSceneMode mode){
+    void GameSceneLoaded(Scene next, LoadSceneMode mode)
+    {
         var player = GameObject.FindObjectOfType<Player>();
-        if(player!=null){
+        if (player != null)
+        {
             player.PlayerSize = PlayerSize;
             player.Nigoseru = Nigoseru;
         }
         SceneManager.sceneLoaded -= GameSceneLoaded;
+    }
+
+    void ResultSceneLoaded(Scene next, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= ResultSceneLoaded;
     }
 }
 

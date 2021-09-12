@@ -5,7 +5,8 @@ using UnityEngine;
 public class Atowonigosu : MonoBehaviour
 {
 
-
+    [SerializeField]
+    private GameObject resultAnimator;
     [SerializeField]
     private float Radius; // Nigosuをテストするときの半径
     [SerializeField]
@@ -20,6 +21,11 @@ public class Atowonigosu : MonoBehaviour
     private Transform explosionCenter; // 爆発の中心
     [SerializeField]
     private Player player; // Player Componentへの参照
+
+    [SerializeField]
+    private float maxExplosionPower = 1000f;
+    [SerializeField]
+    private float exlplosionDirRandom = 0.1f;
 
     public bool CanNigosu; // Nigosu関数を実行してもよいか
     private int reminderObject; // Nigosu関数で吹き取んでいるオブジェクトの個数
@@ -36,10 +42,12 @@ public class Atowonigosu : MonoBehaviour
         return Mathf.Pow(target.GetComponent<Rigidbody2D>().mass, 2f) < power;
     }
 
-    private void addPlayerSize(float add){
+    private void addPlayerSize(float add)
+    {
         player.PlayerSize += add;
     }
-    private void decreaseNigoseru(){
+    private void decreaseNigoseru()
+    {
         --player.Nigoseru;
     }
 
@@ -71,6 +79,12 @@ public class Atowonigosu : MonoBehaviour
         float res = 0;
         foreach (var (obj, v) in Nigosareta)
         {
+            Tobaseru tobaseru = obj.GetComponent<Tobaseru>();
+            if (tobaseru != null)
+            {
+                res += Mathf.Sqrt(tobaseru.ObjectSize) * Mathf.Log(v.magnitude);
+                continue;
+            }
             res += obj.GetComponent<Rigidbody2D>().mass * Mathf.Log(v.magnitude);
         }
         return res;
@@ -95,8 +109,20 @@ public class Atowonigosu : MonoBehaviour
             if (rigid == null) continue;
             if (!IsNigosuable(i.gameObject, power)) continue;
             Vector2 v = i.transform.position - center;
-            Vector2 add = v.normalized * power * 1 / v.sqrMagnitude;
+            float k = 1f;
+            {
+                // もし、飛ばす対象にTobaseruコンポーネントがあった場合は、大きさの差から飛ばす強さを変える
+                Tobaseru tobaseru = i.GetComponent<Tobaseru>();
+                if (tobaseru != null && player != null)
+                {
+                    k = Mathf.Pow(player.PlayerSize, 3f) / Mathf.Pow(tobaseru.ObjectSize, 3f);
+                }
+            }
+            Vector2 add = v.normalized * power * 1 / v.sqrMagnitude * k;
+            add = capVector2(add, maxExplosionPower);
+            add = randomizeVectorDirection(add, exlplosionDirRandom);
             rigid.AddForce(add);
+            rigid.AddTorque(Random.Range(-add.magnitude, add.magnitude));
             StartCoroutine(TrackObject(i.gameObject));
         }
         do
@@ -109,8 +135,7 @@ public class Atowonigosu : MonoBehaviour
         Debug.Log("You're score: " + score.ToString());
         Nigosareta.Clear();
         CanNigosu = true;
-        yield return new WaitForSeconds(1f);
-        player.ReloadScene();
+        resultAnimator.SetActive(true); // リザルトアニメーション
     }
     public IEnumerator NigosuRepeated(float span)
     {
@@ -123,14 +148,13 @@ public class Atowonigosu : MonoBehaviour
                 StartCoroutine(Nigosu(Power, Radius));
             }
         }
-        routine = null;
     }
 
-    public void NigosuRoutine()
+    public void NigosuRoutine(float value)
     {
-        if(routine == null)
+        if (routine == null)
         {
-            routine = StartCoroutine(Nigosu(Power, Radius));
+            routine = StartCoroutine(Nigosu(Power * value, Radius));
         }
     }
 
@@ -138,14 +162,38 @@ public class Atowonigosu : MonoBehaviour
     {
         Nigosareta = new List<(GameObject, Vector2)>();
         CanNigosu = true;
-        if(explosionCenter == null){
+        if (explosionCenter == null)
+        {
             explosionCenter = this.transform;
         }
-        if(player == null){
+        if (player == null)
+        {
             player = this.GetComponent<Player>();
-            if(player == null){
+            if (player == null)
+            {
                 Debug.Log("Start:ERROR there are no Player Component");
             }
         }
+    }
+
+    private Vector2 capVector2(Vector2 v, float max)
+    {
+        if (v.magnitude < max)
+        {
+            return v;
+        }
+        return v.normalized * max;
+    }
+
+    private Vector2 randomizeVectorDirection(Vector2 v, float rad)
+    {
+        // Vector2をrad以下の角度でランダムに向きを変えます
+        float x1 = v.x;
+        float y1 = v.y;
+        float rot = Random.Range(-rad, rad);
+        float x2 = Mathf.Cos(rot);
+        float y2 = Mathf.Sin(rot);
+
+        return new Vector2(x1 * x2 - y1 * y2, x1 * y2 + y1 * x2);
     }
 }
