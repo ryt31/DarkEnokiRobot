@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
         if (nigoseru <= 0)
         {
             SceneManager.sceneLoaded += ResultSceneLoaded;
-            SceneManager.LoadScene("Result", LoadSceneMode.Additive);
+            SceneManager.LoadScene("Result");
         }
         else
         {
