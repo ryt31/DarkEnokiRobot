@@ -77,5 +77,9 @@ public class Player : MonoBehaviour
         }
         SceneManager.sceneLoaded -= ResultSceneLoaded;
     }
+
+    void Update(){
+        PlayerSize = PlayerSize;
+    }
 }
 
