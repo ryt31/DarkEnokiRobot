@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections.Generic;
 using System.Linq;
 
 public class BuildingsSpawner : MonoBehaviour
@@ -63,12 +62,12 @@ public class BuildingsSpawner : MonoBehaviour
 
     private void Update()
     {
-        spawnTime += Time.deltaTime;
+        spawnTime -= Time.deltaTime;
 
-        if (spawnTime > 0.5f && !playerMove.OnPressedEnter.Value)
+        while (spawnTime < 0f && !playerMove.OnPressedEnter.Value)
         {
             var pos = new Vector2(
-                Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 1)).x + 1.0f,
+                Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 1)).x + 5.0f,
                 -1.0f);
 
             var building = Instantiate(SelectBuilding(), pos, Quaternion.identity);
@@ -82,7 +81,9 @@ public class BuildingsSpawner : MonoBehaviour
 
             building.transform.localScale = calcBuildingsScale(building);
 
-            spawnTime = 0.0f;
+            float addTime = Mathf.Min(10f, Mathf.Max(0.01f, 0.01f / Mathf.Pow(Mathf.PerlinNoise(Time.time * 0.1f, 0f) + 0.1f ,10f)));
+            addTime *= building.transform.localScale.x;
+            spawnTime += addTime;
         }
 
         if (Mathf.Abs(playerTransform.position.x - floorPos.x) < 8.5f && !playerMove.OnPressedEnter.Value)
