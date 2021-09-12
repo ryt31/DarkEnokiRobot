@@ -71,6 +71,11 @@ public class Atowonigosu : MonoBehaviour
         float res = 0;
         foreach (var (obj, v) in Nigosareta)
         {
+            Tobaseru tobaseru = obj.GetComponent<Tobaseru>();
+            if(tobaseru != null){
+                res += Mathf.Sqrt(tobaseru.ObjectSize) * Mathf.Log(v.magnitude);
+                continue;
+            }
             res += obj.GetComponent<Rigidbody2D>().mass * Mathf.Log(v.magnitude);
         }
         return res;
@@ -95,7 +100,16 @@ public class Atowonigosu : MonoBehaviour
             if (rigid == null) continue;
             if (!IsNigosuable(i.gameObject, power)) continue;
             Vector2 v = i.transform.position - center;
-            Vector2 add = v.normalized * power * 1 / v.sqrMagnitude;
+            float k = 1f;
+            {
+                // もし、飛ばす対象にTobaseruコンポーネントがあった場合は、大きさの差から飛ばす強さを変える
+                Tobaseru tobaseru = i.GetComponent<Tobaseru>();
+                if (tobaseru != null && player != null)
+                {
+                    k = Mathf.Pow(player.PlayerSize, 3f) / Mathf.Pow(tobaseru.ObjectSize, 3f);
+                }
+            }
+            Vector2 add = v.normalized * power * 1 / v.sqrMagnitude * k;
             rigid.AddForce(add);
             StartCoroutine(TrackObject(i.gameObject));
         }
