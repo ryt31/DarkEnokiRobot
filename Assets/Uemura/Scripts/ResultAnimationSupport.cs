@@ -8,6 +8,8 @@ public class ResultAnimationSupport : MonoBehaviour
 {
     [SerializeField] private Text sizeText;
     [SerializeField] private Transform toriTransform;
+    [SerializeField] private GameObject tararaSE;
+    [SerializeField] private GameObject fanSE;
 
     private float size;
     private float growupSize;
@@ -34,7 +36,12 @@ public class ResultAnimationSupport : MonoBehaviour
 
     public void ResultAnimation()
     {
+        tararaSE.SetActive(true);
         DOTween.To(() => size, (x) => size = x, growupSize, 3f).SetEase(Ease.InCirc);
-        toriTransform.DOScale(toriTransform.localScale*(growupSize/size),3f).SetEase(Ease.OutBounce);
+        toriTransform.DOScale(toriTransform.localScale*(growupSize/size),3f).SetEase(Ease.OutBounce).OnComplete(()=> {
+
+            tararaSE.SetActive(false);
+            fanSE.SetActive(true);
+        });
     }
 }
