@@ -201,4 +201,16 @@ public class Atowonigosu : MonoBehaviour
 
         return new Vector2(x1 * x2 - y1 * y2, x1 * y2 + y1 * x2);
     }
+
+    void Update()
+    {
+        foreach (var obj in GameObject.FindObjectsOfType<Tobaseru>())
+        {
+            if (obj.GetComponent<Tobaseru>().IsNigosareta()) continue;
+            if (MissingRadius < Vector2.Distance(obj.transform.position, this.transform.position))
+            {
+                Destroy(obj.gameObject);
+            }
+        }
+    }
 }

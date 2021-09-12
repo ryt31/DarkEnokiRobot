@@ -14,6 +14,11 @@ public class Tobaseru : MonoBehaviour
         nigosareta = true;
     }
 
+    public bool IsNigosareta()
+    {
+        return nigosareta;
+    }
+
 
     void Start(){
         nigosareta = false;
