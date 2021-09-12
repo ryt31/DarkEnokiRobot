@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class LastResultOntroller : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class LastResultOntroller : MonoBehaviour
     [SerializeField] private Text sizeText;
     [SerializeField] private Text rankText;
     [SerializeField] private Animator animator;
+    [SerializeField] private Button titleButton;
     private float size;
     private float nowSize=1.5f;
     private int sizeRate = 1;
@@ -75,7 +77,15 @@ public class LastResultOntroller : MonoBehaviour
 
     private void StartEffect()
     {
-        DOTween.To(() => nowSize, (x) => nowSize = x, size, 10f).SetEase(Ease.InCirc);
+        DOTween.To(() => nowSize, (x) => nowSize = x, size, 10f).SetEase(Ease.InCirc).OnComplete(()=> {
 
+            titleButton.gameObject.SetActive(true);
+        });
+
+    }
+
+    public void ReturnTitle()
+    {
+        SceneManager.LoadScene("Title");
     }
 }
